@@ -7,6 +7,7 @@ import { CreateChromebookController } from './controllers/chromebook/CreateChrom
 import { DeleteChromebookController } from './controllers/chromebook/DeleteChromebookController';
 import { ListChromebookController } from './controllers/chromebook/ListChromebookController';
 import { CreateResponsavelController } from './controllers/responsavel/CreateResponsavelController';
+import { DeleteResponsavelController } from './controllers/responsavel/DeleteResponsavelController';
 import { ListResponsaveisController } from './controllers/responsavel/ListResponsaveisController';
 import { CreateTurmaController } from './controllers/turma/CreateTurmaController';
 import { ListTurmaController } from './controllers/turma/ListTurmaController';
@@ -26,6 +27,7 @@ router.delete('/chromebook', new DeleteChromebookController().handle)
 // Rotas para responsavel
 router.post('/responsavel', new CreateResponsavelController().handle);
 router.get('/responsavel', new ListResponsaveisController().handle);
+router.delete('/responsavel', new DeleteResponsavelController().handle)
 
 // Rotas para turma
 router.post('/turma', new CreateTurmaController().handle);
