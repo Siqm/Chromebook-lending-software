@@ -1,0 +1,43 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+
+model Responsavel {
+	id				String @id @default(uuid())
+	name			String
+	phone			String 
+	email			String @unique
+	alunos			Aluno[]
+}
+
+
+model Aluno {
+    id    			String @id @default(uuid())
+    name  			String
+    email 			String @unique
+    grade 			String
+	prontuario		String
+	chromebook 		Chromebook? @relation(fields: [chromebookId], references: [id])
+	chromebookId	String @unique
+	responsaveis	Responsavel[]
+
+    @@map("alunos")
+}
+
+model Chromebook {
+	id 				String @id @default(uuid())
+	serial			String @unique
+	model			String @default("Samsung Chromebook 4")
+	aluno			Aluno?
+
+	@@map("chromebooks")
+}
