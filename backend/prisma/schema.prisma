@@ -10,13 +10,22 @@ datasource db {
     url      = env("DATABASE_URL")
 }
 
+model Turma {
+    id              String @id @default(uuid())
+    name            String @unique
+    alunos          Aluno[]
+
+    @@map("turmas")
+}
 
 model Responsavel {
 	id				String @id @default(uuid())
 	name			String
-	phone			String 
+	phone			String
 	email			String @unique
 	alunos			Aluno[]
+
+    @@map("responsaveis")
 }
 
 
@@ -24,11 +33,12 @@ model Aluno {
     id    			String @id @default(uuid())
     name  			String
     email 			String @unique
-    grade 			String
 	prontuario		String
 	chromebook 		Chromebook? @relation(fields: [chromebookId], references: [id])
-	chromebookId	String @unique
+	chromebookId	String? @unique
 	responsaveis	Responsavel[]
+    turma           Turma @relation(fields: [turmaId], references: [id])
+    turmaId         String
 
     @@map("alunos")
 }
