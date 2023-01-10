@@ -4,6 +4,7 @@ import { CreateAlunoController } from './controllers/aluno/CreateAlunoController
 import { DeleteAlunoController } from './controllers/aluno/DeleteAlunoController';
 import { ListAlunoController } from './controllers/aluno/ListAlunoController';
 import { CreateChromebookController } from './controllers/chromebook/CreateChromebookController';
+import { DeleteChromebookController } from './controllers/chromebook/DeleteChromebookController';
 import { ListChromebookController } from './controllers/chromebook/ListChromebookController';
 import { CreateResponsavelController } from './controllers/responsavel/CreateResponsavelController';
 import { ListResponsaveisController } from './controllers/responsavel/ListResponsaveisController';
@@ -20,6 +21,7 @@ router.delete('/aluno', new DeleteAlunoController().handle)
 // Rotas para chromebook
 router.post('/chromebook', new CreateChromebookController().handle);
 router.get('/chromebook', new ListChromebookController().handle);
+router.delete('/chromebook', new DeleteChromebookController().handle)
 
 // Rotas para responsavel
 router.post('/responsavel', new CreateResponsavelController().handle);
