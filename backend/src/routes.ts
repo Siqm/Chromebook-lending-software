@@ -1,6 +1,7 @@
 import {Router} from 'express'
 import 'express-async-errors'
 import { CreateAlunoController } from './controllers/aluno/CreateAlunoController';
+import { ListAlunoController } from './controllers/aluno/ListAlunoController';
 import { CreateChromebookController } from './controllers/chromebook/CreateChromebookController';
 import { CreateResponsavelController } from './controllers/responsavel/CreateResponsavelController';
 import { CreateTurmaController } from './controllers/turma/CreateTurmaController';
@@ -9,6 +10,7 @@ const router = Router();
 
 // Rotas para aluno
 router.post("/aluno", new CreateAlunoController().handle)
+router.get('/aluno', new ListAlunoController().handle)
 
 // Rotas para turma
 router.post('/turma', new CreateTurmaController().handle)
