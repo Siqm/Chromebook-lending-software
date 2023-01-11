@@ -1,6 +1,7 @@
 import {Router} from 'express'
 import 'express-async-errors'
 import { CreateAlunoController } from './controllers/aluno/CreateAlunoController';
+import { CreateFullAlunoController } from './controllers/aluno/CreateFullAlunoController';
 import { DeleteAlunoController } from './controllers/aluno/DeleteAlunoController';
 import { ListAlunoController } from './controllers/aluno/ListAlunoController';
 import { CreateChromebookController } from './controllers/chromebook/CreateChromebookController';
@@ -18,6 +19,7 @@ const router = Router();
 router.post("/aluno", new CreateAlunoController().handle)
 router.get('/aluno', new ListAlunoController().handle)
 router.delete('/aluno', new DeleteAlunoController().handle)
+router.post('/aluno/full', new CreateFullAlunoController().handle)
 
 // Rotas para chromebook
 router.post('/chromebook', new CreateChromebookController().handle);
