@@ -7,6 +7,7 @@ export function errorHandler(
     next: NextFunction
 ) {
     if (err instanceof Error) {
+        console.log(err.message)
         return res.status(400).json({
             error: err.message
         })
