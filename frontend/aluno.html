@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://kit.fontawesome.com/5ab4af1232.js" crossorigin="anonymous"></script>
+  <title>Document</title>
+</head>
+<body>
+  <div class="container">
+
+    <div class="header-top">
+      <header class="main-header">
+        <a href="#">
+          <img src="./images/logo_branco_ mascote Internationa School.png"
+            alt="Logotipo Colégio Degraus international, branco"
+            class="logo-branco"  
+          >
+        </a>
+
+        <nav class="header-top-nav">
+          <ul>
+            <li><a href="#"><i class="fa-solid fa-children"></i> Aluno</a></li>
+            <li><a href="#"><i class="fa-brands fa-chrome"></i> Chromebook</a></li>
+            <li><a href="#"><i class="fa-solid fa-user"></i> Responsável</a></li>
+            <li><a href="#"><i class="fa-solid fa-school"></i> Turma</a></li>
+          </ul>
+        </nav>
+      </header>
+    </div>
+
+    <div class="main-content">
+      <div class="row">
+        <div class="column">
+          <h2>Informações sobre o Aluno:</h2>
+
+          <form action="#" method="POST" class="aluno-form">
+            <label for="aluno-name">Nome</label>
+            <input type="text" name="aluno-name" id="aluno-name" placeholder="Antonio Carlos da Silva">
+
+            <label for="aluno-email">Email</label>
+            <input type="email" name="aluno-email" id="aluno-email" placeholder="antonio.carlos@email.com">
+
+            <label for="aluno-prontuario">Prontuario</label>
+            <input type="text" name="aluno-prontuario" id="aluno-prontuario">
+
+            <label for="aluno-turma">Turma</label>
+            <input type="text" name="aluno-turma" id="aluno-turma" placeholder="1ª Série AM">
+          </form>
+        </div>
+
+        <div class="column">
+          <h2>Informações sobre o primeiro Responsavel:</h2>
+
+          <form action="#" method="POST" class="responsavel-form">
+            <label for="responsavel-name">Nome</label>
+            <input type="text" name="responsavel-nome" id="responsavel-nome" placeholder="Marta Hersheys Laravel">
+
+            <label for="responsavel-phone">Telefone</label>
+            <input type="text" name="responsavel-phone" id="responsavel-phone" placeholder="(11) 91234-5678">
+
+            <label for="responsavel-email">Email</label>
+            <input type="email" name="responsavel-email" id="responsavel-email" placeholder="marta.laravel@email.com">
+          </form>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="column">
+          <h2>Informações sobre o segundo Responsavel: </h2>
+          <form action="#" method="POST" class="responsavel-form">
+            <label for="responsavel-name">Nome</label>
+            <input type="text" name="responsavel-nome" id="responsavel-nome" placeholder="Thiago Montenegro Laravel">
+
+            <label for="responsavel-phone">Telefone</label>
+            <input type="text" name="responsavel-phone" id="responsavel-phone" placeholder="(11) 91234-5678">
+
+            <label for="responsavel-email">Email</label>
+            <input type="email" name="responsavel-email" id="responsavel-email" placeholder="thiago.laravel@email.com">
+          </form>
+        </div>
+
+        <div class="column">
+          <h2>Informações sobre o chromebook:</h2>
+          <form action="#" method="POST">
+            <label for="chromebook-model">Modelo</label>
+            <input type="text" placeholder="Samsung chromebook 4" id="chromebook-model" name="chromebook-model">
+
+            <label for="chromebook-serial">Serial</label>
+            <input type="text" id="chromebook-serial" name="chromebook-serial" placeholder="9W1QARB48741E">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
