@@ -1,0 +1,39 @@
+.main-content-border {
+    border-width: 4px;
+    border-style: solid;
+    border-image: linear-gradient(to right, #b43a3a, #fd9c1d, #fcd845) 1;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+}
+
+.main-content {
+    height: 500px;
+    padding: 5em;
+    box-sizing: border-box;
+    text-align: left;
+    background: rgb(2, 0, 36);
+    background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 35%, rgba(0, 212, 255, 1) 100%);
+    color: white;
+}
+
+.main-content p {
+    line-height: 2;
+    width: 60%;
+}
+
+.about {
+    width: 70%;
+    margin: auto;
+}
+
+.about h2 {
+    text-align: center;
+}
+
+.card {
+    text-align: center;
+    display: inline-block;
+    width: 40%;
+    padding: 0 0 0 5%;
+}

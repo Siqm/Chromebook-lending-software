@@ -2,12 +2,18 @@ body {
     font-family: sans-serif;
     margin: 0;
     padding: 0;
+    color: #555;
 }
 
 a {
     color: #ccc;
     text-decoration: none;
     transition: .2s;
+}
+
+h1 {
+    font-weight: normal;
+    letter-spacing: 2px;
 }
 
 a:hover {

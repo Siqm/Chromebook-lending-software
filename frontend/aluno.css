@@ -1,0 +1,55 @@
+body {
+    background-color: #eee;
+}
+
+h2 {
+    color: #FFEBB7;
+    background-color: #243763;
+    border: 2px solid #FF6E31;
+    border-radius: 2px;
+    margin: 0;
+}
+
+.main-content {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.row {
+    width: 600px;
+    display: flex;
+    align-items: left;
+    justify-content: center;
+    flex-direction: column;
+    padding: 2rem 1.5rem;
+    background-color: #fff;
+}
+
+.column {
+    width: 100%;
+    display: inline-block;
+    padding: 25px;
+    box-sizing: border-box;
+}
+
+.aluno-form {
+    padding: 10px
+}
+
+.aluno-form label {
+    text-align: center;
+    width: 100%;
+}
+
+.aluno-form input{
+    display: block;
+    padding: 10px;
+    width: 100%;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    background-color: #eee;
+}
