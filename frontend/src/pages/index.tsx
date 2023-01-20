@@ -6,10 +6,18 @@ import logoImg from '../../public/international-school-branco.png'
 import { Input } from '@/components/ui/Input'
 import { Button } from '@/components/ui/Button'
 import Link from 'next/link'
+import { AuthContext } from '@/contexts/AuthContext'
+import { useContext, FormEvent } from 'react'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
+    const { SignIn } = useContext(AuthContext)
+
+    async function handleLogin(event: FormEvent) {
+        
+    }
+    
     return (
         <>
             <Head>
@@ -20,7 +28,7 @@ export default function Home() {
 
                 <div className={styles.login}>
                     <Image src={logoImg} alt='Logo Colégio Degraus International School' className={styles.logo} />
-                    <form>
+                    <form onSubmit={handleLogin}>
                         <Input
                             placeholder='Digite seu email'
                             type='email'
