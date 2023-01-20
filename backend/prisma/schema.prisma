@@ -51,3 +51,14 @@ model Chromebook {
 
 	@@map("chromebooks")
 }
+
+model User {
+    id              String @id @default(uuid())
+    name            String
+    email           String @unique
+    password        String
+    role            String
+    lastName        String
+
+    @@map("users")
+}
