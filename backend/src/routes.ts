@@ -13,12 +13,14 @@ import { DeleteResponsavelController } from './controllers/responsavel/DeleteRes
 import { ListResponsaveisController } from './controllers/responsavel/ListResponsaveisController';
 import { CreateTurmaController } from './controllers/turma/CreateTurmaController';
 import { ListTurmaController } from './controllers/turma/ListTurmaController';
+import { AuthUserController } from './controllers/user/AuthUserController';
 import { CreateUserController } from './controllers/user/CreateUserController';
 
 const router = Router();
 
 // Rotas para Usuário
 router.post('/user', new CreateUserController().handle)
+router.post('/login', new AuthUserController().handle)
 
 
 // Rotas para aluno
