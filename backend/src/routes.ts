@@ -15,12 +15,14 @@ import { CreateTurmaController } from './controllers/turma/CreateTurmaController
 import { ListTurmaController } from './controllers/turma/ListTurmaController';
 import { AuthUserController } from './controllers/user/AuthUserController';
 import { CreateUserController } from './controllers/user/CreateUserController';
+import { DetailUserController } from './controllers/user/DetailUserController';
 
 const router = Router();
 
 // Rotas para Usuário
 router.post('/user', new CreateUserController().handle)
 router.post('/login', new AuthUserController().handle)
+router.get('/me', new DetailUserController().handle)
 
 
 // Rotas para aluno
