@@ -1,15 +1,12 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import { Inter } from '@next/font/google'
-import styles from '@/styles/home.module.scss'
-import logoImg from '../../public/international-school-branco.png'
-import { Input } from '@/components/ui/Input'
-import { Button } from '@/components/ui/Button'
-import Link from 'next/link'
+import { Button } from "@/components/ui/Button";
+import { Input } from "@/components/ui/Input";
+import Head from "next/head";
+import Image from "next/image";
+import Link from "next/link";
+import styles from '../../styles/home.module.scss'
+import logoImg from '../../../public/international-school-branco.png'
 
-const inter = Inter({ subsets: ['latin'] })
-
-export default function Home() {
+export default function SignUp() {
     return (
         <>
             <Head>
@@ -21,6 +18,11 @@ export default function Home() {
                 <div className={styles.login}>
                     <Image src={logoImg} alt='Logo Colégio Degraus International School' className={styles.logo} />
                     <form>
+                        <Input
+                            placeholder='Digite seu nome'
+                            type='text'
+                        />
+
                         <Input
                             placeholder='Digite seu email'
                             type='email'
@@ -36,8 +38,8 @@ export default function Home() {
                         </Button>
                     </form>
 
-                    <Link href='/signup' className={styles.text}>
-                        Não possui uma conta? Cadastre-se!
+                    <Link href='/' className={styles.text}>
+                        Já possui uma conta? Faça login!
                     </Link>
                 </div>
             </div>
