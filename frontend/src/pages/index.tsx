@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/Button'
 import Link from 'next/link'
 import { AuthContext } from '@/contexts/AuthContext'
 import { useContext, FormEvent } from 'react'
+import Header from '@/components/Header'
 
 const inter = Inter({ subsets: ['latin'] })
 
