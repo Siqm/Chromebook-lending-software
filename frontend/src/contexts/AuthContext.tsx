@@ -70,7 +70,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
     async function SignIn({ email, password }: SignInProps){
         try {
-            const response = await api.post('/authenticate', {
+            const response = await api.post('/login', {
                 email,
                 password
             })

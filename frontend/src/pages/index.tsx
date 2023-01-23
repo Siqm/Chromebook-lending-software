@@ -7,7 +7,7 @@ import { Input } from '@/components/ui/Input'
 import { Button } from '@/components/ui/Button'
 import Link from 'next/link'
 import { AuthContext } from '@/contexts/AuthContext'
-import { useContext, FormEvent } from 'react'
+import { useContext, FormEvent, useState } from 'react'
 import Header from '@/components/Header'
 
 const inter = Inter({ subsets: ['latin'] })
@@ -15,8 +15,29 @@ const inter = Inter({ subsets: ['latin'] })
 export default function Home() {
     const { SignIn } = useContext(AuthContext)
 
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+
+    const [loading, setLoading] = useState(false)
+
     async function handleLogin(event: FormEvent) {
-        
+        event.preventDefault();
+
+        if (email === "" || password === "") {
+            alert("preencha os campos")
+            return
+        }
+
+        setLoading(true)
+
+        let data = {
+            email,
+            password
+        }
+
+        await SignIn(data)
+
+        setLoading(false)
     }
     
     return (
@@ -33,14 +54,18 @@ export default function Home() {
                         <Input
                             placeholder='Digite seu email'
                             type='email'
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
                         />
 
                         <Input
                             placeholder='Digite sua senha'
                             type='password'
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
                         />
 
-                        <Button loading={false}>
+                        <Button loading={loading}>
                             Acessar
                         </Button>
                     </form>

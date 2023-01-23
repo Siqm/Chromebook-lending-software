@@ -1,4 +1,4 @@
-import { signOut } from '@/contexts/AuthContext'
+import { SignOut } from '@/contexts/AuthContext'
 import axios, { AxiosError } from 'axios'
 import { parseCookies } from 'nookies'
 import { AuthTokenError } from './errors/AuthTokenError'
@@ -20,7 +20,7 @@ export function setupAPIClient (ctx = undefined) {
     }, (error: AxiosError) => {
         if(error.response.status === 401) {
             if(typeof window !== undefined) {
-                signOut();
+                SignOut();
             } else {
                 return Promise.reject(new AuthTokenError)
             }
