@@ -3,7 +3,7 @@ import axios, { AxiosError } from 'axios'
 import { parseCookies } from 'nookies'
 import { AuthTokenError } from './errors/AuthTokenError'
 
-const url = process.env.BASEURL
+const url = "http://localhost:3333"
 
 export function setupAPIClient (ctx = undefined) {
     let cookies = parseCookies()
