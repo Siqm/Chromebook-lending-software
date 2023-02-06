@@ -69,7 +69,7 @@ model Professor {
     name            String
     email           String @unique
     chromebook      Chromebook? @relation(fields: [chromebookId], references: [id])
-    chromebookId    String @unique
+    chromebookId    String? @unique
 
     @@map("professores")
 }

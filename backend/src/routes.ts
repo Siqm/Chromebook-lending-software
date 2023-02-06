@@ -8,6 +8,7 @@ import { ListAlunoRelationsController } from './controllers/aluno/ListAlunoRelat
 import { CreateChromebookController } from './controllers/chromebook/CreateChromebookController';
 import { DeleteChromebookController } from './controllers/chromebook/DeleteChromebookController';
 import { ListChromebookController } from './controllers/chromebook/ListChromebookController';
+import { CreateProfessorController } from './controllers/professor/CreateProfessorController';
 import { CreateResponsavelController } from './controllers/responsavel/CreateResponsavelController';
 import { DeleteResponsavelController } from './controllers/responsavel/DeleteResponsavelController';
 import { ListResponsaveisController } from './controllers/responsavel/ListResponsaveisController';
@@ -45,5 +46,8 @@ router.delete('/responsavel', new DeleteResponsavelController().handle)
 // Rotas para turma
 router.post('/turma', new CreateTurmaController().handle);
 router.get('/turma', new ListTurmaController().handle);
+
+// Rotas para professor
+router.post('/professor', new CreateProfessorController().handle);
 
 export { router }
