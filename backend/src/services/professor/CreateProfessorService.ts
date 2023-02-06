@@ -19,6 +19,26 @@ export class CreateProfessorService {
             return professor
         }
 
+        const isOnAluno = await client.aluno.findFirst({
+            where: {
+                chromebook: {
+                    serial: chromebookSerial
+                }
+            }
+        })
+
+        const isOnProfessor = await client.professor.findFirst({
+            where: {
+                chromebook: {
+                    serial: chromebookSerial
+                }
+            }
+        })
+
+        if (isOnAluno || isOnProfessor) {
+            throw new Error('A relação já existe')
+        }
+
         const professor = await client.professor.create ({
             data:{
                 name,
