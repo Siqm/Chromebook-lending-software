@@ -9,6 +9,7 @@ import { CreateChromebookController } from './controllers/chromebook/CreateChrom
 import { DeleteChromebookController } from './controllers/chromebook/DeleteChromebookController';
 import { ListChromebookController } from './controllers/chromebook/ListChromebookController';
 import { CreateProfessorController } from './controllers/professor/CreateProfessorController';
+import { ListProfessorController } from './controllers/professor/ListProfessorController';
 import { CreateResponsavelController } from './controllers/responsavel/CreateResponsavelController';
 import { DeleteResponsavelController } from './controllers/responsavel/DeleteResponsavelController';
 import { ListResponsaveisController } from './controllers/responsavel/ListResponsaveisController';
@@ -49,5 +50,6 @@ router.get('/turma', new ListTurmaController().handle);
 
 // Rotas para professor
 router.post('/professor', new CreateProfessorController().handle);
+router.get('/professor', new ListProfessorController().handle)
 
 export { router }
