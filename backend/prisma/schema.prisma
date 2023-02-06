@@ -48,6 +48,7 @@ model Chromebook {
 	serial			String @unique
 	model			String @default("Samsung Chromebook 4")
 	aluno			Aluno?
+    professor       Professor?
 
 	@@map("chromebooks")
 }
@@ -61,4 +62,14 @@ model User {
     lastName        String
 
     @@map("users")
+}
+
+model Professor {
+    id              String @id @default(uuid())
+    name            String
+    email           String @unique
+    chromebook      Chromebook? @relation(fields: [chromebookId], references: [id])
+    chromebookId    String @unique
+
+    @@map("professores")
 }
