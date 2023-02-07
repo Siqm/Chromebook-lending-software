@@ -1,5 +1,5 @@
 import { api } from "@/services/apiClient";
-import { parseCookies, setCookie } from "nookies";
+import { destroyCookie, parseCookies, setCookie } from "nookies";
 import { createContext, ReactNode, useState, useEffect } from "react";
 import Router from 'next/router'
 
@@ -37,9 +37,10 @@ export const AuthContext = createContext({} as AuthContextData)
 
 export function SignOut() {
     try {
-
+        destroyCookie(undefined, '@nextauth.token')
+        Router.push('/')
     } catch(error) {
-
+        console.log('erro ao deslogar')
     }
 }
 
