@@ -13,7 +13,7 @@ export default function Aluno() {
             <div className={styles.containerCenter}>
                 <div className={styles.container}>
                     <nav className={styles.menuAluno}>
-                        <Link href=''>
+                        <Link href='/aluno/listar'>
                             Listar
                         </Link>
 
