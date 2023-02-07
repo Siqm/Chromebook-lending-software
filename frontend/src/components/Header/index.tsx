@@ -31,6 +31,10 @@ export default function Header() {
                         Responsavel
                     </Link>
 
+                    <Link href='/professor'>
+                        Professor
+                    </Link>
+
                     <button onClick={SignOut}>
                         <FiLogOut size={24}/>
                     </button>
