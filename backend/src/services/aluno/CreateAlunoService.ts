@@ -36,6 +36,8 @@ export class CreateAlunoService {
         AlunoRequest,
     }: FullAlunoRequest) {
 
+        console.log('id turma', TurmaRequest)
+
         // Se chegar apenas a informação do aluno
         if (!ResponsavelRequest || !ChromebookRequest) {
             const student = await client.aluno.create({

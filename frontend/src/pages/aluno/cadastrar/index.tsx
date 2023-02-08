@@ -1,6 +1,7 @@
 import Header from '@/components/Header'
 import { Button } from '@/components/ui/Button'
 import { Input } from '@/components/ui/Input'
+import { api } from '@/services/apiClient'
 import { canSSRAuth } from '@/util/canSSRAuth'
 import Head from 'next/head'
 import { useState, FormEvent } from 'react'
@@ -8,19 +9,73 @@ import styles from './styles.module.scss'
 
 export default function Cadastrar() {
 
+
+
     const [alunoName, setAlunoName] = useState('')
     const [alunoEmail, setAlunoEmail] = useState('')
     const [alunoProntuario, setAlunoProntuario] = useState('')
-    const [chromebookSerial, setChromebookSerial] = useState('')
-    const [responsavelName, setResponsavelName] = useState('')
-    const [responsavelPhone, setResponsavelPhone] = useState('')
-    const [responsavelEmail, setResponsavelEmail] = useState('')
-    const [turma, setTurma] = useState('')
+    const [chromebookSerial, setChromebookSerial] = useState(null)
+    const [responsavelName, setResponsavelName] = useState(null)
+    const [responsavelPhone, setResponsavelPhone] = useState(null)
+    const [responsavelEmail, setResponsavelEmail] = useState(null)
+    const [turmaId, setTurmaId] = useState('')
+
+    interface AlunoRequest {
+        name: string,
+        email: string,
+        prontuario: string,
+    }
+
+    interface ChromebookRequest {
+        serial: string,
+    }
+
+    interface ResponsavelRequest {
+        name: string,
+        phone: string,
+        email: string
+    }
+
+    interface TurmaIdRequest {
+        id: string,
+    }
+
+    interface FullAlunoRequest {
+        TurmaIdRequest: TurmaIdRequest,
+        ResponsavelRequest: ResponsavelRequest,
+        ChromebookRequest: ChromebookRequest,
+        AlunoRequest: AlunoRequest,
+    }
 
     async function handleNewAluno(event: FormEvent) {
         event.preventDefault();
 
+        if (
+            !chromebookSerial ||
+            !responsavelEmail ||
+            !responsavelName ||
+            !responsavelPhone
+        ) {
+            let FullAlunoRequest = {
+                AlunoRequest: {
+                    name: alunoName,
+                    email: alunoEmail,
+                    prontuario: alunoProntuario
+                },
+                TurmaRequest: {
+                    id: turmaId
+                }
+            }
 
+            console.log('data ',FullAlunoRequest)
+
+            try {
+                const response = await api.post('/aluno', FullAlunoRequest)
+                console.log(response)
+            } catch (err) {
+                console.log('Error', err)
+            }
+        }
     }
 
     return (
@@ -32,7 +87,7 @@ export default function Cadastrar() {
             <Header />
             <div className={styles.container}>
 
-                <form className={styles.formAluno}>
+                <form className={styles.formAluno} onSubmit={handleNewAluno}>
 
                     <Input
                         type="text"
@@ -83,7 +138,7 @@ export default function Cadastrar() {
                         onChange={(e) => setResponsavelEmail(e.target.value)}
                     />
 
-                    <select name="turma" id="turma" autoFocus>
+                    <select name="turmaId" id="turmaId" autoFocus onChange={(e) => setTurmaId(e.target.value)}>
                         <option value=""> -- Select Size -- </option>
                         <option value='2a55a742-ca62-4a4e-a7e3-f3044b15baa1'>6°ano A</option>
                         <option value='387fd89b-84ba-48db-9ade-020ee0c48979'>6°ano B</option>
