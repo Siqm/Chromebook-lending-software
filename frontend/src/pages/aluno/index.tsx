@@ -17,7 +17,7 @@ export default function Aluno() {
                             Listar
                         </Link>
 
-                        <Link href=''>
+                        <Link href='/aluno/cadastrar'>
                             Cadastrar
                         </Link>
                     </nav>
