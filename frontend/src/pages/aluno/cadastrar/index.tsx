@@ -1,6 +1,7 @@
 import Header from '@/components/Header'
 import { Button } from '@/components/ui/Button'
 import { Input } from '@/components/ui/Input'
+import { canSSRAuth } from '@/util/canSSRAuth'
 import Head from 'next/head'
 import { useState, FormEvent } from 'react'
 import styles from './styles.module.scss'
@@ -50,8 +51,8 @@ export default function Cadastrar() {
                     <Input
                         type="text"
                         placeholder='Digite o prontuário do aluno'
-                        value={alunoName}
-                        onChange={(e) => setAlunoName(e.target.value)}
+                        value={alunoProntuario}
+                        onChange={(e) => setAlunoProntuario(e.target.value)}
                     />
 
                     <Input
@@ -71,14 +72,14 @@ export default function Cadastrar() {
                     <Input
                         type="text"
                         placeholder='Digite o telefone do responsavel'
-                        value={responsavelName}
+                        value={responsavelPhone}
                         onChange={(e) => setResponsavelPhone(e.target.value)}
                     />
 
                     <Input
                         type="text"
                         placeholder='Digite o email do responsavel'
-                        value={responsavelName}
+                        value={responsavelEmail}
                         onChange={(e) => setResponsavelEmail(e.target.value)}
                     />
 
@@ -104,3 +105,9 @@ export default function Cadastrar() {
         </>
     )
 }
+
+export const getServerSideProps = canSSRAuth(async (ctx) => {
+    return {
+        props: {}
+    }
+})
