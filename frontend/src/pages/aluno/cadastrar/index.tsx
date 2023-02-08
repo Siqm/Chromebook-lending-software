@@ -20,42 +20,13 @@ export default function Cadastrar() {
     const [responsavelEmail, setResponsavelEmail] = useState(null)
     const [turmaId, setTurmaId] = useState('')
 
-    interface AlunoRequest {
-        name: string,
-        email: string,
-        prontuario: string,
-    }
-
-    interface ChromebookRequest {
-        serial: string,
-    }
-
-    interface ResponsavelRequest {
-        name: string,
-        phone: string,
-        email: string
-    }
-
-    interface TurmaIdRequest {
-        id: string,
-    }
-
-    interface FullAlunoRequest {
-        TurmaIdRequest: TurmaIdRequest,
-        ResponsavelRequest: ResponsavelRequest,
-        ChromebookRequest: ChromebookRequest,
-        AlunoRequest: AlunoRequest,
-    }
 
     async function handleNewAluno(event: FormEvent) {
         event.preventDefault();
 
-        if (
-            !chromebookSerial ||
-            !responsavelEmail ||
-            !responsavelName ||
-            !responsavelPhone
-        ) {
+        if (!chromebookSerial || !responsavelEmail || 
+            !responsavelName || !responsavelPhone) 
+        {
             let FullAlunoRequest = {
                 AlunoRequest: {
                     name: alunoName,
@@ -68,6 +39,57 @@ export default function Cadastrar() {
             }
 
             console.log('data ',FullAlunoRequest)
+
+            try {
+                const response = await api.post('/aluno', FullAlunoRequest)
+                console.log(response)
+            } catch (err) {
+                console.log('Error', err)
+            }
+        }
+
+        if(!chromebookSerial) {
+            let FullAlunoRequest = {
+                AlunoRequest: {
+                    name: alunoName,
+                    email: alunoEmail,
+                    prontuario: alunoProntuario
+                },
+                TurmaRequest: {
+                    id: turmaId
+                },
+                ResponsavelRequest: {
+                    name: responsavelName,
+                    email: responsavelEmail,
+                    phone: responsavelPhone
+                }
+            }
+
+            try {
+                const response = await api.post('/aluno', FullAlunoRequest)
+                console.log(response)
+            } catch (err) {
+                console.log('Error', err)
+            }
+        } else {
+            let FullAlunoRequest = {
+                AlunoRequest: {
+                    name: alunoName,
+                    email: alunoEmail,
+                    prontuario: alunoProntuario
+                },
+                TurmaRequest: {
+                    id: turmaId
+                },
+                ResponsavelRequest: {
+                    name: responsavelName,
+                    email: responsavelEmail,
+                    phone: responsavelPhone
+                },
+                ChromebookRequest: {
+                    serial: chromebookSerial
+                }
+            }
 
             try {
                 const response = await api.post('/aluno', FullAlunoRequest)
