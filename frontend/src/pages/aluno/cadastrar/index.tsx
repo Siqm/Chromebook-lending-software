@@ -85,15 +85,15 @@ export default function Cadastrar() {
 
                     <select name="turma" id="turma" autoFocus>
                         <option value=""> -- Select Size -- </option>
-                        <option value='6 A'>6°ano A</option>
-                        <option value='6 B'>6°ano B</option>
-                        <option value='7 A' >7°ano A</option>
-                        <option value='7 B'>7°ano B</option>
-                        <option value='8'>8°ano</option>
-                        <option value='9'>9°ano</option>
-                        <option value='1 EM'>1°série EM</option>
-                        <option value='2 EM'>2°série EM</option>
-                        <option value='3 EM'>3°série EM</option>
+                        <option value='2a55a742-ca62-4a4e-a7e3-f3044b15baa1'>6°ano A</option>
+                        <option value='387fd89b-84ba-48db-9ade-020ee0c48979'>6°ano B</option>
+                        <option value='df928d84-b242-4844-949b-cd37e3b39132' >7°ano A</option>
+                        <option value='a7533d60-376f-45ae-a219-35af2133251b'>7°ano B</option>
+                        <option value='0a7f53cc-22da-4cf6-9422-673eb90b2536'>8°ano</option>
+                        <option value='60f7554b-6d9e-4d11-a93f-9ec984f1f3ce'>9°ano</option>
+                        <option value='4c5aa330-28ee-484c-acbe-6731587854b3'>1°série EM</option>
+                        <option value='29cb2001-0355-41e5-ae75-e84999a9067d'>2°série EM</option>
+                        <option value='169f59a0-79be-4d5b-adac-b63da5321472'>3°série EM</option>
                     </select>
 
                     <Button type='submit'>

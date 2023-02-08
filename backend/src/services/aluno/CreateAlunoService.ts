@@ -1,23 +1,127 @@
-import client from '../../prisma/client'
+import { Aluno } from "@prisma/client"
+import client from "../../prisma/client"
 
 interface AlunoRequest {
     name: string,
     email: string,
     prontuario: string,
-    turmaId: string
+}
+
+interface ChromebookRequest {
+    serial: string,
+}
+
+interface ResponsavelRequest {
+    name: string,
+    phone: string,
+    email: string
+}
+
+interface TurmaRequest {
+    id: string,
+}
+
+interface FullAlunoRequest {
+    TurmaRequest: TurmaRequest,
+    ResponsavelRequest: ResponsavelRequest,
+    ChromebookRequest: ChromebookRequest,
+    AlunoRequest: AlunoRequest,
 }
 
 export class CreateAlunoService {
-    async execute ({ name, email, prontuario, turmaId }: AlunoRequest) {
-        const student = await client.aluno.create({
+    async execute({
+        TurmaRequest,
+        ResponsavelRequest,
+        ChromebookRequest,
+        AlunoRequest,
+    }: FullAlunoRequest) {
+
+        // Se chegar apenas a informação do aluno
+        if (!ResponsavelRequest || !ChromebookRequest) {
+            const student = await client.aluno.create({
+                data: {
+                    name: AlunoRequest.name,
+                    email: AlunoRequest.email,
+                    prontuario: AlunoRequest.prontuario,
+                    turma: {
+                        connect: {
+                            id: TurmaRequest.id
+                        }
+                    }
+                }
+            })
+
+            return student
+        }
+
+        // Se chegar informação do aluno e do pai
+        if (!ChromebookRequest) {
+
+            const student = await client.aluno.create({
+                data: {
+                    name: AlunoRequest.name,
+                    email: AlunoRequest.email,
+                    prontuario: AlunoRequest.prontuario,
+                    turma: {
+                        connect: {
+                            id: TurmaRequest.id
+                        }
+                    },
+                    responsaveis: {
+                        connectOrCreate: {
+                            where: {
+                                email: ResponsavelRequest.email
+                            },
+                            create: {
+                                email: ResponsavelRequest.email,
+                                name: ResponsavelRequest.name,
+                                phone: ResponsavelRequest.phone
+                            }
+                        }
+                    }
+                }
+            })
+
+            return student
+        }
+
+        const fullStudent = await client.aluno.create({
             data: {
-                name,
-                email,
-                prontuario,
-                turmaId
+                name: AlunoRequest.name,
+                email: AlunoRequest.email,
+                prontuario: AlunoRequest.prontuario,
+                turma: {
+                    connect: {
+                        id: TurmaRequest.id
+                    }
+                },
+                responsaveis: {
+                    connectOrCreate: {
+                        where: {
+                            email: ResponsavelRequest.email
+                        },
+                        create: {
+                            email: ResponsavelRequest.email,
+                            name: ResponsavelRequest.name,
+                            phone: ResponsavelRequest.phone
+                        }
+                    }
+                },
+                chromebook: {
+                    connectOrCreate: {
+                        where: {
+                            serial: ChromebookRequest.serial
+                        },
+                        create: {
+                            serial: ChromebookRequest.serial
+                        }
+                    }
+                }
             }
         })
 
-        return student;
+        return fullStudent
+
     }
 }
+
