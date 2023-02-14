@@ -1,6 +1,7 @@
 import {Router} from 'express'
 import 'express-async-errors'
 import { CreateAlunoController } from './controllers/aluno/CreateAlunoController';
+import { CreateChromebookRelationController } from './controllers/aluno/CreateChromebookRelationController';
 import { DeleteAlunoController } from './controllers/aluno/DeleteAlunoController';
 import { ListAlunoController } from './controllers/aluno/ListAlunoController';
 import { ListAlunoRelationsController } from './controllers/aluno/ListAlunoRelationsController';
@@ -31,6 +32,7 @@ router.post("/aluno", new CreateAlunoController().handle)
 router.get('/aluno', new ListAlunoController().handle)
 router.delete('/aluno', new DeleteAlunoController().handle)
 router.get('/aluno/relations', new ListAlunoRelationsController().handle)
+router.post('/aluno/chromebook', new CreateChromebookRelationController().handle)
 
 // Rotas para chromebook
 router.post('/chromebook', new CreateChromebookController().handle);
