@@ -13,13 +13,8 @@ export class CreateChromebookRelationService {
             },
             data: {
                 chromebook: {
-                    connectOrCreate: {
-                        where: {
-                            serial
-                        },
-                        create: {
-                            serial
-                        }
+                    connect: {
+                        serial
                     }
                 }
             }
