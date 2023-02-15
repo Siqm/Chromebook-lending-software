@@ -1,5 +1,6 @@
 import Header from "@/components/Header";
 import { api } from "@/services/apiClient";
+import { canSSRAuth } from "@/util/canSSRAuth";
 import Head from "next/head";
 import { useEffect, useState } from "react";
 import styles from './styles.module.scss'
@@ -60,3 +61,9 @@ export default function Listar() {
     </>
   )
 }
+
+export const getServerSideProps = canSSRAuth(async (ctx) => {
+    return{ 
+        props: {}
+    }
+})

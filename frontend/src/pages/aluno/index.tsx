@@ -1,4 +1,5 @@
 import Header from "@/components/Header";
+import { canSSRAuth } from "@/util/canSSRAuth";
 import Head from "next/head";
 import Link from "next/link";
 import styles from './styles.module.scss'
@@ -27,3 +28,8 @@ export default function Aluno() {
     )
 }
 
+export const getServerSideProps = canSSRAuth(async (ctx) => {
+    return{ 
+        props: {}
+    }
+})

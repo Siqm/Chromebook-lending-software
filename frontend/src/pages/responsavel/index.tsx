@@ -1,4 +1,5 @@
 import Header from "@/components/Header";
+import { canSSRAuth } from "@/util/canSSRAuth";
 
 export default function Responsavel() {
     return(
@@ -7,3 +8,9 @@ export default function Responsavel() {
         </>
     )
 }
+
+export const getServerSideProps = canSSRAuth(async (ctx) => {
+    return{ 
+        props: {}
+    }
+})

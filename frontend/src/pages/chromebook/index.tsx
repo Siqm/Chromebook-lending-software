@@ -1,4 +1,5 @@
 import Header from "@/components/Header";
+import { canSSRAuth } from "@/util/canSSRAuth";
 
 export default function Chromebook() {
     return (
@@ -7,3 +8,9 @@ export default function Chromebook() {
         </>
     )
 }
+
+export const getServerSideProps = canSSRAuth(async (ctx) => {
+    return{ 
+        props: {}
+    }
+})
