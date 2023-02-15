@@ -1,48 +1,37 @@
 import client from "../../prisma/client";
 
 interface RequestAluno {
-    alunoId: string,
-    alunoName: string,
-    alunoEmail: string,
+    id: string,
+    name: string,
+    email: string,
 }
 
 export class InfoAlunoService {
-    async execute({alunoId, alunoName, alunoEmail}: RequestAluno) {
+    async execute({id, name, email}: RequestAluno) {
 
-        if (alunoId) {
-
-            const aluno = await client.aluno.findUnique({
-                where: {
-                    id: alunoId
-                }
-            })
-
-            return aluno;
-        }
-
-        if (alunoName) {
-
-            const aluno = await client.aluno.findMany({
-                where: {
-                    name: {
-                        contains: alunoName,
-                        mode: 'insensitive'
+        const aluno = await client.aluno.findMany({
+            where: {
+                OR: [
+                    {
+                        id
+                    },
+                    {
+                        email
+                    },
+                    {
+                        name: {
+                            contains: name,
+                            mode:'insensitive'
+                        }
                     }
-                }
-            })
+                ],
+            },
+            include: {
+                chromebook: true,
+                responsaveis: true
+            }
+        })
 
-            return aluno;
-        }
-
-        if (alunoEmail) {
-
-            const aluno = await client.aluno.findUnique({
-                where: {
-                    email: alunoEmail
-                }
-            })
-
-            return aluno;
-        }
+        return aluno;
     }
 }

@@ -9,45 +9,32 @@ interface ResponsavelRequest {
 export class InfoResponsavelService{
     async execute({id, name, email}: ResponsavelRequest) {
 
-        if(!id || !name) {
-            const responsavel = await client.responsavel.findFirst({
-                where: {
-                    email: {
-                        contains: email,
-                        mode: "insensitive"
-                    }
-                },
-                include: {
-                    alunos: {
-                        include: {
-                            chromebook: true
+        const responsavel = await client.responsavel.findMany({
+            where: {
+                OR: [
+                    {
+                        id
+                    },
+                    {
+                        email
+                    },
+                    {
+                        name: {
+                            contains: name,
+                            mode:'insensitive'
                         }
                     }
-                }
-            })
-
-            return responsavel
-        }
-
-        if (!name) {
-            const responsavel = await client.responsavel.findFirst({
-                where: {
-                    id
-                }
-            })
-
-            return responsavel
-        }
-
-        const responsavel = await client.responsavel.findFirst({
-            where: {
-                name: {
-                    contains: name,
-                    mode: 'insensitive'
+                ],
+            },
+            include: {
+                alunos: {
+                    include: {
+                        chromebook: true
+                    }
                 }
             }
         })
 
-        return responsavel
+        return responsavel;
     }
 }
