@@ -9,42 +9,57 @@ interface ProfessorRequest {
 export class InfoProfessorService {
     async execute({name, email, id} : ProfessorRequest) {
 
-        console.log(!!email)
+        // if (id) {
+        //     const professor = await client.professor.findFirst({
+        //         where: {
+        //             id
+        //         },
+        //         include: {
+        //             chromebook: true
+        //         }
+        //     })
 
-        if (!name && !email) {
-            const professor = await client.professor.findFirst({
-                where: {
-                    id
-                }
-            })
+        //     console.log('id',professor)
 
-            console.log('id',professor)
+        //     return professor
+        // }
 
-            return professor
-        }
+        // if(email) {
+        //     const professor = await client.professor.findFirst({
+        //         where: {
+        //             email, OR: {name}
+        //         },
+        //         include: {
+        //             chromebook: true
+        //         }
+        //     })
 
-        if(!name) {
-            const professor = await client.professor.findFirst({
-                where: {
-                    email
-                }
-            })
+        //     console.log('email',professor)
 
-            console.log('email',professor)
-
-            return professor
-        }
+        //     return professor
+        // }
 
         const professor = await client.professor.findMany({
             where: {
-                name: {
-                    contains: 'se',
-                    mode:'insensitive'
-                }
+                OR: [
+                    {
+                        id
+                    },
+                    {
+                        email
+                    },
+                    {
+                        name: {
+                            contains: name,
+                            mode:'insensitive'
+                        }
+                    }
+                ],
+            },
+            include: {
+                chromebook: true
             }
         })
-
-        console.log(professor)
 
         return professor;
     }
