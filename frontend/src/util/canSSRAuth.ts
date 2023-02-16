@@ -5,7 +5,6 @@ import { destroyCookie, parseCookies } from "nookies";
 export function canSSRAuth<P>(fn: GetServerSideProps<P>) {
 
     return async (ctx: GetServerSidePropsContext): Promise <GetServerSidePropsResult<P>> => {
-        console.log('iniciando ssrAuth')
 
         const cookies = parseCookies(ctx) 
 
