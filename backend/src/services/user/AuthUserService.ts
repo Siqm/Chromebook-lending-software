@@ -30,7 +30,7 @@ export class AuthUserService {
         },
         process.env.PRIVATE_KEY, {
             subject: user.id,
-            expiresIn: '30d'
+            expiresIn: '30d',
         })
 
         return {

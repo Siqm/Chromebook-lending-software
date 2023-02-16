@@ -22,12 +22,16 @@ import { ListTurmaController } from './controllers/turma/ListTurmaController';
 import { AuthUserController } from './controllers/user/AuthUserController';
 import { CreateUserController } from './controllers/user/CreateUserController';
 import { DetailUserController } from './controllers/user/DetailUserController';
+import { ensureAuthentication } from './middlewares/ensureAuthentication';
 
 const router = Router();
 
-// Rotas para Usuário
-router.post('/user', new CreateUserController().handle)
 router.post('/login', new AuthUserController().handle)
+router.post('/user', new CreateUserController().handle)
+
+router.use(ensureAuthentication)
+
+// Rotas para Usuário
 router.get('/me', new DetailUserController().handle)
 
 
