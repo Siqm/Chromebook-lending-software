@@ -2,6 +2,7 @@ import Header from "@/components/Header";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { api } from "@/services/apiClient";
+import { canSSRAuth } from "@/util/canSSRAuth";
 import Head from "next/head";
 import { FormEvent, useState } from "react";
 import styles from './styles.module.scss'
@@ -59,3 +60,9 @@ export default function Cadastrar() {
     </>
   )
 }
+
+export const getServerSideProps = canSSRAuth(async (ctx) => {
+  return{ 
+      props: {}
+  }
+})

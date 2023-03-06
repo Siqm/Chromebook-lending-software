@@ -2,40 +2,39 @@ import Header from '@/components/Header'
 import Head from 'next/head'
 import styles from './styles.module.scss'
 import { useState, useEffect } from 'react'
-import { api } from '@/services/apiClient'
-import { canSSRAuth } from '@/util/canSSRAuth'
+import { api } from '@/services/apiClient';
+import { canSSRAuth } from '@/util/canSSRAuth';
 
 export default function Listar() {
 
-  const [professores, setProfessores] = useState([])
+  const [chromebooks, setChromebooks] = useState([]);
 
   useEffect(() => {
-    async function loadProfessor() {
-      const response = await api.get('/professor', {})
+    async function loadChromebooks() {
+      const response = await api.get('/chromebook', {});
 
-      setProfessores(response.data)
+      setChromebooks(response.data)
     }
 
-    loadProfessor()
+    loadChromebooks()
   })
 
   return (
     <>
-      <Head><title>Degraus - Listar professores</title></Head>
+      <Head><title>Degraus - Listar Chromebooks</title></Head>
 
       <Header />
 
       <div className={styles.container}>
-        <h1>Lista de professores</h1>
+        <h1>Lista de Chromebooks</h1>
 
         <ul className={styles.table}>
-          {professores.map((professor) => {
+          {chromebooks.map((chromebook) => {
             return (
               <li>
                 <p>
-                  {professor.name} |&nbsp;
-                  {professor.email} |&nbsp;
-                  {professor.chromebookId ? professor.chromebookId : "nulo"} |&nbsp;
+                  {chromebook.serial} |&nbsp;
+                  {chromebook.model} |&nbsp;
                 </p>
               </li>
             )
