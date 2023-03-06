@@ -6,7 +6,7 @@ export class InfoAlunoController{
 
         const infoAlunoService = new InfoAlunoService();
 
-        const aluno = await infoAlunoService.execute(req.body)
+        const aluno = await infoAlunoService.execute(req.query)
 
         return res.json(aluno);
     }

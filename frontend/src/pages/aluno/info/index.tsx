@@ -1,57 +1,91 @@
 import Header from '@/components/Header'
 import { Button } from '@/components/ui/Button'
 import { Input } from '@/components/ui/Input'
+import { api } from '@/services/apiClient'
 import { canSSRAuth } from '@/util/canSSRAuth'
-import { useEffect, useState } from 'react'
+import { FormEvent, useEffect, useState } from 'react'
 import styles from './styles.module.scss'
 
 type Aluno = {
-    name: string,
-    email: string,
-    prontuario: string,
-    chromebookId: string,
-    responsaveis: [],
-    turmaId: string
+  name: string,
+  email: string,
+  prontuario: string,
+  chromebookId: string,
+  responsaveis: [],
+  turmaId: string
 }
 
 export default function Info() {
 
-    const [alunos, setAlunos] = useState([])
+  const [alunosList, setAlunosList] = useState([])
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
 
-    useEffect(() => {
-        
-    })
+  useEffect(() => {
 
-    return (
-        <>
-            <Header />
-            <div className={styles.container}>
-                <div className={styles.column}>
-                    <div className={styles.wrapper}>
-                        <h1>Buscar aluno</h1>
-                        <Input placeholder='Nome do aluno' />
-                        <Input placeholder='Email do aluno' />
-                        <Button>Buscar</Button>
-                    </div>
+  })
 
-                    <div className={styles.wrapper}>
-                        <h1>Lista de alunos encontrados</h1>
-                    </div>
-                </div>
+  async function handleFindAluno(event: FormEvent) {
+    event.preventDefault();
 
-                <div className={styles.list}>
+    try {
+      const response = await api.get("aluno/info", { params: { name, email } })
+      setAlunosList(response.data)
 
-                    <div className={styles.wrapper}>
-                        <h1>Detalhes do aluno X</h1>
-                    </div>
-                </div>
-            </div>
-        </>
-    )
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  return (
+    <>
+      <Header />
+      <div className={styles.container}>
+        <div className={styles.input}>
+          <h1>Buscar aluno</h1>
+          <form onSubmit={handleFindAluno}>
+            <Input
+              placeholder='Nome do aluno'
+              type='text'
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+            <Input
+              placeholder='Email do aluno'
+              type='email'
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <Button type='submit'>Buscar</Button>
+          </form>
+        </div>
+
+        <div className={styles.list}>
+          {alunosList.map((e) => {
+            return <ul>
+              <li>Nome: {e.name}</li>
+              <li>Prontuario: {e.prontuario}</li>
+              <li>
+                {e.responsaveis.map(responsavel => {
+                  return (
+                    <>
+                      <li>Responsavel: {responsavel.name}</li>
+                      <li>Telefone {responsavel.phone}</li>
+                    </>
+                  )
+                }
+                )}
+              </li>
+            </ul>
+          })}
+        </div>
+      </div>
+    </>
+  )
 }
 
 export const getServerSideProps = canSSRAuth(async (ctx) => {
-    return {
-        props: {}
-    }
+  return {
+    props: {}
+  }
 })
