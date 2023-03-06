@@ -1,0 +1,33 @@
+.container {
+    width: 90%;
+    margin: 75px auto;
+    background-color: var(--blue-900);
+    color: var(--gray-100);
+    border-radius: .5rem;
+    padding: 15px;
+
+    h1 {
+        color: white;
+    }
+}
+
+.table {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 1.5rem;
+    
+    li {
+        background-color: var(--blue-700);
+        border-radius: .5rem;
+        color: var(--gray-100);
+        border-bottom: 1.5px var(--gray-100) solid;
+        padding: 5px;
+        margin-bottom: 3px;
+        transition: .3s;
+
+        &:hover {
+            color: #fff;
+        }
+    }
+}
