@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/Button'
 import { Input } from '@/components/ui/Input'
 import { api } from '@/services/apiClient'
 import { canSSRAuth } from '@/util/canSSRAuth'
+import {Link} from 'react-router-dom'
 import { FormEvent, useEffect, useState } from 'react'
 import styles from './styles.module.scss'
 
@@ -61,12 +62,12 @@ export default function Info() {
         </div>
 
         <div className={styles.list}>
-          {alunosList.map((e) => {
+          {alunosList.map((aluno) => {
             return <ul>
-              <li>Nome: {e.name}</li>
-              <li>Prontuario: {e.prontuario}</li>
+              <li>Nome: {aluno.name}</li>
+              <li>Prontuario: {aluno.prontuario}</li>
               <li>
-                {e.responsaveis.map(responsavel => {
+                {aluno.responsaveis.map(responsavel => {
                   return (
                     <>
                       <li>Responsavel: {responsavel.name}</li>
@@ -77,6 +78,7 @@ export default function Info() {
                 )}
               </li>
             </ul>
+            
           })}
         </div>
       </div>
