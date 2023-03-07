@@ -1,10 +1,19 @@
 import Header from "@/components/Header";
+import NavBar from "@/components/NavBar";
 import { canSSRAuth } from "@/util/canSSRAuth";
 import Head from "next/head";
 import Link from "next/link";
 import styles from './styles.module.scss'
 
 export default function Professor() {
+
+    const links =[{
+        "url":"/professor/listar",
+        "description":"Listar Professores"
+    }, {
+        "url":"/professor/cadastrar",
+        "description":"Cadastrar novo Professor"
+    }]
     return (
         <>
             <Head>
@@ -13,15 +22,7 @@ export default function Professor() {
             <Header />
             <div className={styles.containerCenter}>
                 <div className={styles.container}>
-                    <nav className={styles.menuAluno}>
-                        <Link href='/professor/listar'>
-                            Listar
-                        </Link>
-
-                        <Link href='/professor/cadastrar'>
-                            Cadastrar
-                        </Link>
-                    </nav>
+                    <NavBar links={links}></NavBar>
                 </div>
             </div>
         </>

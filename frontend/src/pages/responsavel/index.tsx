@@ -1,10 +1,19 @@
 import Header from "@/components/Header";
+import NavBar from "@/components/NavBar";
 import { canSSRAuth } from "@/util/canSSRAuth";
 import Head from "next/head";
 import Link from "next/link";
 import styles from './styles.module.scss'
 
 export default function Responsavel() {
+
+    const links = [{
+        "url":"/responsavel/listar",
+        "description":"Listar Responsáveis"
+    }, {
+        "url":"/responsavel/cadastrar",
+        "description":"Cadstrar novo Responsável"
+    }]
     return (
         <>
             <Head>
@@ -13,15 +22,7 @@ export default function Responsavel() {
             <Header />
             <div className={styles.containerCenter}>
                 <div className={styles.container}>
-                    <nav className={styles.menuAluno}>
-                        <Link href='/responsavel/listar'>
-                            Listar
-                        </Link>
-
-                        <Link href='/responsavel/cadastrar'>
-                            Cadastrar
-                        </Link>
-                    </nav>
+                    <NavBar links={links}></NavBar>
                 </div>
             </div>
         </>
