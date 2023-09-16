@@ -28,6 +28,109 @@ interface FullAlunoRequest {
     AlunoRequest: AlunoRequest,
 }
 
+// export class CreateAlunoService {
+//     async execute({
+//         TurmaRequest,
+//         ResponsavelRequest,
+//         ChromebookRequest,
+//         AlunoRequest,
+//     }: FullAlunoRequest) {
+
+//         console.log(!!ChromebookRequest.serial)
+
+//         // Se chegar apenas a informação do aluno
+//         if (!ResponsavelRequest && !ChromebookRequest.serial) {
+//             console.log("Executando primeiro if")
+//             const student = await client.aluno.create({
+//                 data: {
+//                     name: AlunoRequest.name,
+//                     email: AlunoRequest.email,
+//                     prontuario: AlunoRequest.prontuario,
+//                     turma: {
+//                         connect: {
+//                             id: TurmaRequest.id
+//                         }
+//                     }
+//                 }
+//             })
+
+//             return student
+//         }
+
+//         // Se chegar informação do aluno e do pai
+//         if (!ChromebookRequest) {
+//             console.log("Executando segundo if")
+
+//             const student = await client.aluno.create({
+//                 data: {
+//                     name: AlunoRequest.name,
+//                     email: AlunoRequest.email,
+//                     prontuario: AlunoRequest.prontuario,
+//                     turma: {
+//                         connect: {
+//                             id: TurmaRequest.id
+//                         }
+//                     },
+//                     responsaveis: {
+//                         connectOrCreate: {
+//                             where: {
+//                                 email: ResponsavelRequest.email
+//                             },
+//                             create: {
+//                                 email: ResponsavelRequest.email,
+//                                 name: ResponsavelRequest.name,
+//                                 phone: ResponsavelRequest.phone
+//                             }
+//                         }
+//                     }
+//                 }
+//             })
+
+//             return student
+//         }
+
+//         console.log("Executando terceiro if")
+//         const fullStudent = await client.aluno.create({
+//             data: {
+//                 name: AlunoRequest.name,
+//                 email: AlunoRequest.email,
+//                 prontuario: AlunoRequest.prontuario,
+//                 turma: {
+//                     connect: {
+//                         id: TurmaRequest.id
+//                     }
+//                 },
+//                 responsaveis: {
+//                     connectOrCreate: {
+//                         where: {
+//                             email: ResponsavelRequest.email
+//                         },
+//                         create: {
+//                             email: ResponsavelRequest.email,
+//                             name: ResponsavelRequest.name,
+//                             phone: ResponsavelRequest.phone
+//                         }
+//                     }
+//                 },
+//                 chromebook: {
+//                     connectOrCreate: {
+//                         where: {
+//                             serial: ChromebookRequest.serial
+//                         },
+//                         create: {
+//                             serial: ChromebookRequest.serial
+//                         }
+//                     }
+//                 }
+//             }
+//         })
+
+//         return fullStudent
+
+//     }
+// }
+
+
 export class CreateAlunoService {
     async execute({
         TurmaRequest,
@@ -36,57 +139,7 @@ export class CreateAlunoService {
         AlunoRequest,
     }: FullAlunoRequest) {
 
-
-        // Se chegar apenas a informação do aluno
-        if (!ResponsavelRequest || !ChromebookRequest) {
-            const student = await client.aluno.create({
-                data: {
-                    name: AlunoRequest.name,
-                    email: AlunoRequest.email,
-                    prontuario: AlunoRequest.prontuario,
-                    turma: {
-                        connect: {
-                            id: TurmaRequest.id
-                        }
-                    }
-                }
-            })
-
-            return student
-        }
-
-        // Se chegar informação do aluno e do pai
-        if (!ChromebookRequest) {
-
-            const student = await client.aluno.create({
-                data: {
-                    name: AlunoRequest.name,
-                    email: AlunoRequest.email,
-                    prontuario: AlunoRequest.prontuario,
-                    turma: {
-                        connect: {
-                            id: TurmaRequest.id
-                        }
-                    },
-                    responsaveis: {
-                        connectOrCreate: {
-                            where: {
-                                email: ResponsavelRequest.email
-                            },
-                            create: {
-                                email: ResponsavelRequest.email,
-                                name: ResponsavelRequest.name,
-                                phone: ResponsavelRequest.phone
-                            }
-                        }
-                    }
-                }
-            })
-
-            return student
-        }
-
-        const fullStudent = await client.aluno.create({
+        const student = await client.aluno.create({
             data: {
                 name: AlunoRequest.name,
                 email: AlunoRequest.email,
@@ -94,18 +147,6 @@ export class CreateAlunoService {
                 turma: {
                     connect: {
                         id: TurmaRequest.id
-                    }
-                },
-                responsaveis: {
-                    connectOrCreate: {
-                        where: {
-                            email: ResponsavelRequest.email
-                        },
-                        create: {
-                            email: ResponsavelRequest.email,
-                            name: ResponsavelRequest.name,
-                            phone: ResponsavelRequest.phone
-                        }
                     }
                 },
                 chromebook: {
@@ -121,8 +162,6 @@ export class CreateAlunoService {
             }
         })
 
-        return fullStudent
-
+        return student
     }
 }
-

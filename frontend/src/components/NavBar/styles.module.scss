@@ -1,0 +1,26 @@
+.navBar {
+    color: white;
+    width: 70%;
+}
+
+.navList {
+    list-style-type: none;
+}
+
+.navItem {
+    background-color: var(--orange-700);
+    height: 50px;
+    margin: 25px 0;
+    border-radius: .5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: .5s;
+
+    &:hover {
+        filter: brightness(1.12);
+        transform: scale(1.1);
+    }
+}

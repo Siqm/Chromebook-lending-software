@@ -1,0 +1,17 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 70%;
+    margin: 75px auto;
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--blue-900);
+    padding: 25px;
+    height: 153px;
+    color: white;
+}

@@ -5,14 +5,14 @@ import Head from "next/head";
 import Link from "next/link";
 import styles from './styles.module.scss'
 
-export default function Responsavel() {
+export default function Professor() {
 
-    const links = [{
-        "url":"/responsavel/listar",
-        "description":"Listar Responsáveis"
+    const links =[{
+        "url":"/professor/listar",
+        "description":"Listar Professores"
     }, {
-        "url":"/responsavel/cadastrar",
-        "description":"Cadstrar novo Responsável"
+        "url":"/professor/cadastrar",
+        "description":"Cadastrar novo Professor"
     }]
     return (
         <>

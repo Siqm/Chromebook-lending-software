@@ -1,13 +1,13 @@
 import client from "../../prisma/client";
 
-interface RequestAluno {
-    id: string,
-    name: string,
-    email: string,
+interface AlunoRequest {
+    id?: string,
+    name?: string,
+    email?: string,
 }
 
 export class InfoAlunoService {
-    async execute({id, name, email}: RequestAluno) {
+    async execute({name, email, id}: AlunoRequest) {
 
         const aluno = await client.aluno.findMany({
             where: {
@@ -21,7 +21,7 @@ export class InfoAlunoService {
                     {
                         name: {
                             contains: name,
-                            mode:'insensitive'
+                            mode: 'insensitive'
                         }
                     }
                 ],
