@@ -41,7 +41,7 @@ router.get('/aluno', new ListAlunoController().handle)
 router.delete('/aluno', new DeleteAlunoController().handle)
 router.get('/aluno/relations', new ListAlunoRelationsController().handle)
 router.post('/aluno/chromebook', new CreateChromebookRelationController().handle)
-router.get('/aluno/info', new InfoAlunoController().handle)
+router.post('/aluno/info', new InfoAlunoController().handle)
 router.post('/aluno/responsavel', new CreateResponsavelRelationController().handle)
 
 // Rotas para chromebook

@@ -8,7 +8,6 @@ import { Button } from '@/components/ui/Button'
 import Link from 'next/link'
 import { AuthContext } from '@/contexts/AuthContext'
 import { useContext, FormEvent, useState } from 'react'
-import Header from '@/components/Header'
 import { canSSRGuest } from '@/util/canSSRGuest'
 
 const inter = Inter({ subsets: ['latin'] })
@@ -40,7 +39,7 @@ export default function Home() {
 
         setLoading(false)
     }
-    
+
     return (
         <>
             <Head>

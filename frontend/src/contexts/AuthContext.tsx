@@ -94,6 +94,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
             Router.push('/dashboard')
         } catch (error) {
             alert('Erro')
+            console.log(error)
         }
     }
 
